@@ -1,0 +1,26 @@
+# ./docker-compose.yml
+
+version: '3'
+
+services: 
+  db:
+    image: mysql:5.7
+    container_name: db_dev
+    environment: 
+      MYSQL_ROOT_PASSWORD: dev_root_pass
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_pass
+    ports: 
+      - "9906:3306"
+
+  web:
+    image: php:7.4-apache
+    container_name: php_webapp_dev
+    depends_on: 
+      - db
+    volumes: 
+      - ./src/:/var/www/html/
+    ports: 
+      - "8080:80"
+    
