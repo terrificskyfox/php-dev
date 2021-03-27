@@ -14,7 +14,17 @@ services:
     ports: 
       - "9906:3306"
 
-  web:
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin_dev
+    depends_on: 
+      - db
+    environment: 
+      PMA_HOST: db
+    ports: 
+      - "8000:80"
+
+  webapp:
     image: php:7.4-apache
     container_name: php_webapp_dev
     depends_on: 
