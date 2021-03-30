@@ -25,12 +25,13 @@ services:
       - "8000:80"
 
   webapp:
-    image: php:7.4-apache
+    build: .
+    #image: php:7.4-apache
     container_name: php_webapp_dev
     depends_on: 
       - db
-    volumes: 
-      - ./src/:/var/www/html/
+    #volumes: 
+    #  - ./src/:/var/www/html/
     ports: 
       - "8080:80"
     
